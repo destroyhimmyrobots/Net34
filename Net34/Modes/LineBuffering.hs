@@ -35,7 +35,7 @@ robustPutStrLn tries robust h s = do
 	case r of
 		Right e -> return ()
 		Left  e ->
-			if (tries < robust) && expectedEx e
+			if tries < robust && expectedEx e
 			then do wait 1
 				robustPutStrLn (1+tries) robust h s 
 			else C.E.throw e
